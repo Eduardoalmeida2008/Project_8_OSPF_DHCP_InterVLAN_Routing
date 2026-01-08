@@ -52,48 +52,70 @@ interface g0/0.10
  ip address 192.168.10.1 255.255.255.0
  no shutdown
 
+
 interface g0/0.20
  encapsulation dot1Q 20
  ip address 192.168.20.1 255.255.255.0
  no shutdown
 ...
+
+
 DHCP Pool Example
-Copiar código
-Bash
 ip dhcp pool VLAN10
  network 192.168.10.0 255.255.255.0
  default-router 192.168.10.1
  dns-server 8.8.8.8
+
+
 ACL Example (VLAN 10 Test)
-Copiar código
-Bash
 access-list 100 permit ip 192.168.10.0 0.0.0.255 192.168.10.0 0.0.0.255
 access-list 110 deny ip any any
+
+
 OSPF Example
-Copiar código
-Bash
 router ospf 1
  network 192.168.0.0 0.0.255.255 area 0
+
+
 Switch Port Configurations
 Access ports: switchport mode access, switchport access vlan <VLAN_ID>
 Trunk ports: switchport mode trunk, allowing all VLANs
 Native VLAN: 1
+
+
 Testing & Verification
 Ping within VLANs and across VLANs on the same router.
+
 Ping across routers (inter-VLAN communication).
+
 Verify OSPF neighbors: show ip ospf neighbor
+
 Verify ACLs: show access-lists
+
 Verify DHCP leases: show ip dhcp binding
+
+
 Notes
 This lab uses a basic ACL only on VLAN 10 for testing purposes.
+
 All other VLANs allow full connectivity within their VLAN group.
+
 DHCP pools are distributed across routers; no DHCP relay is used.
+
+
 Observations
 Inter-VLAN routing is confirmed via pings between PCs in different VLANs on the same router.
+
 OSPF neighbors reach FULL state across all routers.
+
 ACL successfully blocks unauthorized traffic outside VLAN 10-20.
+
+
 Lessons Learned
 Proper trunk configuration is essential for inter-VLAN communication.
+
 Router-on-a-stick simplifies routing multiple VLANs on a single interface.
+
 ACLs can easily block traffic but must be carefully applied to avoid disrupting DHCP or necessary communication.
+
 OSPF ensures dynamic routing between routers for larger networks.
