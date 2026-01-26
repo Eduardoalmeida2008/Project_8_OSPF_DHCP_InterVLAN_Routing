@@ -1,48 +1,4 @@
-# Project_8_OSPF_DHCP_InterVLAN_Routing
-Advanced network lab focusing on OSPF, DHCP, inter-VLAN routing, and basic ACL testing across multiple routers and switches.
-
-# Project 8: OSPF, DHCP, and Inter-VLAN Routing Lab
-
-## Overview
-This lab simulates a medium-to-large corporate network with multiple VLANs, routers, and switches. The main objectives are to configure **OSPF**, **DHCP**, **inter-VLAN routing**, and test a **basic ACL** for VLAN 10.
-
-## Topology
-- **Routers:** 3
-- **Switches:** 6
-- **VLANs:** 12
-- **PCs per VLAN:** 4
-
-## Objectives
-1. Implement **router-on-a-stick** with subinterfaces for each VLAN.
-2. Configure **inter-VLAN routing** to enable communication within VLAN groups.
-3. Configure **DHCP pools** for each VLAN and ensure clients receive IP addresses correctly.
-4. Implement **basic ACL** testing on VLAN 10 (allowing access only to VLAN 10-20, deny all other traffic).
-5. Establish **OSPF** between all routers and verify neighbor relationships.
-6. Troubleshoot connectivity across multiple VLANs and routers.
-
-## Devices & Interfaces
-- Routers: Cisco 2911
-- Switches: Cisco 2960
-- PC connections: Access ports for each VLAN
-- Trunk ports for switch-to-switch and switch-to-router links
-- VLAN-to-router mapping (subinterfaces on router for each VLAN)
-
-## VLANs
-| VLAN ID | Name       | Switch  |
-|---------|-----------|---------|
-| 10      | VLAN10    | SW1     |
-| 20      | VLAN20    | SW1     |
-| 30      | VLAN30    | SW2     |
-| 40      | VLAN40    | SW2     |
-| 50      | VLAN50    | SW3     |
-| 60      | VLAN60    | SW3     |
-| 70      | VLAN70    | SW4     |
-| 80      | VLAN80    | SW4     |
-| 90      | VLAN90    | SW5     |
-| 100     | VLAN100   | SW5     |
-| 110     | VLAN110   | SW6     |
-| 120     | VLAN120   | SW6     |
-
+VLAN Segmentation and Trunking Logic 🌐📌 OverviewThis project demonstrates the implementation of Virtual Local Area Networks (VLANs) to segment a switched network. By isolating different departments into logical groups, we optimize broadcast domains and enhance local network security, ensuring that data traffic is only accessible to authorized segments.Status: Fully Verified ✅📐 Network TopologyThe architecture uses a managed switch to handle multiple logical networks:Central Switch: Configured with VLAN tagging and port security.End Devices: Multiple workstations assigned to specific departments (VLANs) to test isolation and communication flow.🛠️ Technical SpecificationsCore Technology: VLAN (Virtual LAN).Trunking Standard: IEEE 802.1Q.Port Configurations: Access and Trunk modes.Verification Tool: ICMP (Ping) tests for connectivity validation.⚙️ Configuration Workflow1. Logical Segmentation (VLANs)VLANs were created and named to structure the network efficiently. This process limits the scope of broadcast traffic and organizes the infrastructure logically rather than physically.VLAN 10: Dedicated to the first logical segment.VLAN 20: Dedicated to the second logical segment.2. Port and Trunk AssignmentAccess Ports: Assigned to specific PCs to ensure they belong to the correct VLAN.Trunk Ports: Configured on uplinks to allow multiple VLAN tags to pass through a single physical interface using the 802.1Q protocol.🧪 Connectivity ResultsVerification was performed to ensure that isolation is working as intended.Intra-VLAN: Communication between devices in the same VLAN is successful.Inter-VLAN: Traffic between different VLANs is isolated (as no router was added for Inter-VLAN routing in this specific lab), proving the security of the segmentation.ScenarioResultSame VLAN PingSuccess (0% Loss)Different VLAN PingIsolated (Timed Out)
 ## Key Configurations
 
 ### Router-on-a-Stick Example (Router 1)
