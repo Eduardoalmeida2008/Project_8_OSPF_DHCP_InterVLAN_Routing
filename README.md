@@ -1,6 +1,68 @@
-VLAN Segmentation and Trunking Logic 🌐📌 OverviewThis project demonstrates the implementation of Virtual Local Area Networks (VLANs) to segment a switched network. By isolating different departments into logical groups, we optimize broadcast domains and enhance local network security, ensuring that data traffic is only accessible to authorized segments.Status: Fully Verified ✅📐 Network TopologyThe architecture uses a managed switch to handle multiple logical networks:Central Switch: Configured with VLAN tagging and port security.End Devices: Multiple workstations assigned to specific departments (VLANs) to test isolation and communication flow.🛠️ Technical SpecificationsCore Technology: VLAN (Virtual LAN).Trunking Standard: IEEE 802.1Q.Port Configurations: Access and Trunk modes.Verification Tool: ICMP (Ping) tests for connectivity validation.⚙️ Configuration Workflow1. Logical Segmentation (VLANs)VLANs were created and named to structure the network efficiently. This process limits the scope of broadcast traffic and organizes the infrastructure logically rather than physically.VLAN 10: Dedicated to the first logical segment.VLAN 20: Dedicated to the second logical segment.2. Port and Trunk AssignmentAccess Ports: Assigned to specific PCs to ensure they belong to the correct VLAN.Trunk Ports: Configured on uplinks to allow multiple VLAN tags to pass through a single physical interface using the 802.1Q protocol.🧪 Connectivity ResultsVerification was performed to ensure that isolation is working as intended.Intra-VLAN: Communication between devices in the same VLAN is successful.Inter-VLAN: Traffic between different VLANs is isolated (as no router was added for Inter-VLAN routing in this specific lab), proving the security of the segmentation.ScenarioResultSame VLAN PingSuccess (0% Loss)Different VLAN PingIsolated (Timed Out)
-## Key Configurations
+# VLAN Segmentation and Trunking Logic 🌐
 
+## 📌 Overview
+
+This project demonstrates the implementation of **Virtual Local Area Networks (VLANs)** to segment a switched network. 
+
+By isolating different departments into logical groups, we optimize broadcast domains and enhance local network security, ensuring that data traffic is only accessible to authorized segments.
+
+> **Status:** Fully Verified ✅
+
+---
+
+## 📐 Network Topology
+
+The architecture uses a managed switch to handle multiple logical networks:
+
+* **Central Switch:** Configured with VLAN tagging and port security.
+* **End Devices:** Multiple workstations assigned to specific departments (VLANs) to test isolation and communication flow.
+
+![Network Topology](01_topology_overview.png)
+
+---
+
+## 🛠️ Technical Specifications
+
+* **Core Technology:** VLAN (Virtual LAN).
+* **Trunking Standard:** IEEE 802.1Q.
+* **Port Configurations:** Access and Trunk modes.
+* **Verification Tool:** ICMP (Ping) tests for connectivity validation.
+
+---
+
+## ⚙️ Configuration Workflow
+
+### 1. Logical Segmentation (VLANs)
+
+VLANs were created and named to structure the network efficiently. This process limits the scope of broadcast traffic and organizes the infrastructure logically rather than physically.
+
+* **VLAN 10:** Dedicated to the first logical segment.
+* **VLAN 20:** Dedicated to the second logical segment.
+
+### 2. Port and Trunk Assignment
+
+* **Access Ports:** Assigned to specific PCs to ensure they belong to the correct VLAN.
+* **Trunk Ports:** Configured on uplinks to allow multiple VLAN tags to pass through a single physical interface using the 802.1Q protocol.
+
+![VLAN Configuration](02_SW1_VLANs.png)
+
+---
+
+## 🧪 Connectivity Results
+
+Verification was performed to ensure that isolation is working as intended.
+
+1.  **Intra-VLAN:** Communication between devices in the same VLAN is successful.
+2.  **Inter-VLAN:** Traffic between different VLANs is isolated (as no router was added for Inter-VLAN routing in this specific lab), proving the security of the segmentation.
+
+| Scenario | Result |
+| :--- | :--- |
+| Same VLAN Ping | Success (0% Loss) |
+| Different VLAN Ping | Isolated (Timed Out) |
+
+![Ping Verification](17_PC_VLAN10_ping.png)
+
+---
 ### Router-on-a-Stick Example (Router 1)
 ```bash
 interface g0/0.10
@@ -75,3 +137,6 @@ Router-on-a-stick simplifies routing multiple VLANs on a single interface.
 ACLs can easily block traffic but must be carefully applied to avoid disrupting DHCP or necessary communication.
 
 OSPF ensures dynamic routing between routers for larger networks.
+````
+**Developed by:** Eduardo Almeida  
+*Focusing on Scalable and Secure Network Infrastructure.*
